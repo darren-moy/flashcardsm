@@ -17,11 +17,6 @@ export default function LoginPage() {
     e.preventDefault();
     setError("");
 
-    if (!allowedEmails.includes(email)) {
-      setError("Unauthorized user.");
-      return;
-    }
-
     try {
       await signInWithEmailAndPassword(auth, email, password);
       router.push("/dashboard");
