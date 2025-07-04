@@ -52,19 +52,13 @@ export default function LoginPage() {
         <button
           type="submit"
           className="w-full bg-yellow-500 hover:bg-yellow-600 text-white py-2 px-4 rounded"
+          onClick={() => {
+            console.log('Input email:', email);
+            console.log('Allowed:', allowedEmails.includes(email));
+          }}
         >
           Log In
         </button>
-        <button
-  type="button"
-  onClick={() => {
-    console.log("Allowed emails:", allowedEmails);
-  }}
-  className="w-full bg-gray-200 hover:bg-gray-300 text-black py-2 px-4 rounded"
->
-  Debug Allowed Emails
-</button>
-
       </form>
     </div>
   );
