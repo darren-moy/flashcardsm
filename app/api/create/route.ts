@@ -4,9 +4,9 @@ import { collection, addDoc } from "firebase/firestore";
 
 export async function POST(req: Request) {
   try {
-    const { topic, difficulty, size, email } = await req.json();
+    const { topic, size, email } = await req.json();
 
-    if (!topic || !difficulty || !size || !email) {
+    if (!topic || !size || !email) {
       return NextResponse.json({ error: "Missing fields" }, { status: 400 });
     }
 
@@ -19,7 +19,6 @@ export async function POST(req: Request) {
 
     await addDoc(collection(db, "flashcards"), {
       topic,
-      difficulty,
       user: email,
       cards: flashcards,
       createdAt: new Date(),
