@@ -11,7 +11,7 @@ import {
   CarouselItem,
   CarouselNext,
   CarouselPrevious,
-} from '@/components/UI/carousel'
+} from '@/components/ui/carousel'
 import clsx from 'clsx'
 
 export default function FlashcardSetPage() {

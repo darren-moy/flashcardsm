@@ -2,11 +2,11 @@
 
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { Button } from "@/components/UI/button";
-import { Input } from "@/components/UI/input";
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/UI/form";
-import { useToast } from "@/components/UI/use-toast";
-import { Textarea } from "@/components/UI/textarea";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
+import { useToast } from "@/components/ui/use-toast";
+import { Textarea } from "@/components/ui/textarea";
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm, useFieldArray } from "react-hook-form";
