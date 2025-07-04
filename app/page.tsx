@@ -55,6 +55,16 @@ export default function LoginPage() {
         >
           Log In
         </button>
+        <button
+  type="button"
+  onClick={() => {
+    console.log("Allowed emails:", allowedEmails);
+  }}
+  className="w-full bg-gray-200 hover:bg-gray-300 text-black py-2 px-4 rounded"
+>
+  Debug Allowed Emails
+</button>
+
       </form>
     </div>
   );
