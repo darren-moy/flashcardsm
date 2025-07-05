@@ -64,15 +64,6 @@ export default function LoginPage() {
         >
           Log In
         </button>
-        <button
-          type="button"
-          className="w-full bg-yellow-400 hover:bg-yellow-500 text-white py-2 px-4 rounded"
-          onClick={() => {
-            console.log('FIREBASE API KEY:', process.env.NEXT_PUBLIC_FIREBASE_API_KEY);
-          }}
-        >
-          check key
-        </button>
       </form>
     </div>
   );
