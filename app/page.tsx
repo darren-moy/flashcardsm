@@ -57,8 +57,7 @@ export default function LoginPage() {
           type="submit"
           className="w-full bg-yellow-500 hover:bg-yellow-600 text-white py-2 px-4 rounded"
           onClick={() => {
-            console.log('Input email:', email);
-            console.log('Allowed:', allowedEmails.includes(email));
+            console.log('FIREBASE API KEY:', process.env.NEXT_PUBLIC_FIREBASE_API_KEY);
           }}
         >
           Log In
