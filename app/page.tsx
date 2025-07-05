@@ -1,8 +1,9 @@
 'use client';
 
 import { useState } from 'react';
-import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
+import { signInWithEmailAndPassword } from 'firebase/auth';
 import { useRouter } from 'next/navigation';
+import { auth } from '@/lib/firebase'; 
 
 const allowedEmails = process.env.NEXT_PUBLIC_ALLOWED_EMAILS?.split(',') || [];
 
@@ -16,15 +17,8 @@ export default function LoginPage() {
     e.preventDefault();
     setError('');
 
-    const firebaseAuth = getAuth(); // safer to ensure auth is scoped
-
     try {
-      const userCredential = await signInWithEmailAndPassword(
-        firebaseAuth,
-        email,
-        password
-      );
-
+      const userCredential = await signInWithEmailAndPassword(auth, email, password);
       const user = userCredential.user;
       console.log('Signed in user:', user.email);
 
