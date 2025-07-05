@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { useRouter } from 'next/navigation';
-import { auth } from '@/lib/firebase'; 
+import { auth } from '@/lib/firebase';
 
 const allowedEmails = process.env.NEXT_PUBLIC_ALLOWED_EMAILS?.split(',') || [];
 
@@ -16,6 +16,11 @@ export default function LoginPage() {
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     setError('');
+
+    if (!allowedEmails.includes(email)) {
+      setError('This email is not allowed.');
+      return;
+    }
 
     try {
       const userCredential = await signInWithEmailAndPassword(auth, email, password);
@@ -56,11 +61,17 @@ export default function LoginPage() {
         <button
           type="submit"
           className="w-full bg-yellow-500 hover:bg-yellow-600 text-white py-2 px-4 rounded"
+        >
+          Log In
+        </button>
+        <button
+          type="button"
+          className="w-full bg-yellow-400 hover:bg-yellow-500 text-white py-2 px-4 rounded"
           onClick={() => {
             console.log('FIREBASE API KEY:', process.env.NEXT_PUBLIC_FIREBASE_API_KEY);
           }}
         >
-          Log In
+          check key
         </button>
       </form>
     </div>
