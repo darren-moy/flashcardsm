@@ -21,6 +21,7 @@ export default function LoginPage() {
       await signInWithEmailAndPassword(auth, email, password);
       router.push("/dashboard");
     } catch (err: any) {
+      console.error("Firebase login error:", err.message, err.code);
       setError("Invalid login credentials.");
     }
   };
