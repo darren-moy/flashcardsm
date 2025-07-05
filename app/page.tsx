@@ -1,35 +1,49 @@
 'use client';
 
-import { useState } from "react";
-import { signInWithEmailAndPassword } from "firebase/auth";
-import { auth } from "@/lib/firebase";
-import { useRouter } from "next/navigation";
+import { useState } from 'react';
+import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
+import { useRouter } from 'next/navigation';
 
-const allowedEmails = process.env.NEXT_PUBLIC_ALLOWED_EMAILS?.split(",") || [];
+const allowedEmails = process.env.NEXT_PUBLIC_ALLOWED_EMAILS?.split(',') || [];
 
 export default function LoginPage() {
   const router = useRouter();
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
-    setError("");
+    setError('');
+
+    const firebaseAuth = getAuth(); // safer to ensure auth is scoped
 
     try {
-      await signInWithEmailAndPassword(auth, email, password);
-      router.push("/dashboard");
+      const userCredential = await signInWithEmailAndPassword(
+        firebaseAuth,
+        email,
+        password
+      );
+
+      const user = userCredential.user;
+      console.log('Signed in user:', user.email);
+
+      router.push('/dashboard');
     } catch (err: any) {
-      console.error("Firebase login error:", err.message, err.code);
-      setError("Invalid login credentials.");
+      console.error('Firebase login error:', err.message, err.code);
+      setError('Invalid login credentials.');
     }
   };
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-yellow-50">
-      <form onSubmit={handleLogin} className="bg-white p-8 rounded shadow-md space-y-4 w-full max-w-md">
-        <h1 className="text-2xl font-bold text-center text-yellow-800">Login to Madison's flashcards</h1>
+      <form
+        onSubmit={handleLogin}
+        className="bg-white p-8 rounded shadow-md space-y-4 w-full max-w-md"
+      >
+        <h1 className="text-2xl font-bold text-center text-yellow-800">
+          Login to Madison&apos;s flashcards
+        </h1>
         <input
           type="email"
           placeholder="Email"
